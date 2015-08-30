@@ -81,6 +81,9 @@
       this.maxPages = "" + this.configObjectName + ".maxPages";
       this.currentPage = "" + this.configObjectName + ".currentPage";
       this.orderBy = "" + this.configObjectName + ".orderBy";
+      this.iconSortAscending = "" + this.configObjectName + ".iconSortAscending";
+      this.iconSortDescending = "" + this.configObjectName + ".iconSortDescending";
+      this.iconSortNone = "" + this.configObjectName + ".iconSortNone";
     }
 
     return configurationVariableNames;
@@ -435,12 +438,12 @@
       if (!$scope.getSortIcon) {
         $scope.getSortIcon = function(predicate, currentPredicate) {
           if (predicate !== $scope.predicate) {
-            return "glyphicon glyphicon-minus";
+            return this.configurationVariableNames.iconSortNone;
           }
           if ($scope.descending) {
-            return "glyphicon glyphicon-chevron-down";
+            return this.configurationVariableNames.iconSortDescending;
           } else {
-            return "glyphicon glyphicon-chevron-up";
+            return this.configurationVariableNames.iconSortAscending;
           }
         };
       }

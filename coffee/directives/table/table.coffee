@@ -39,7 +39,7 @@ class Table
 
     if not $scope.getSortIcon
       $scope.getSortIcon = (predicate, currentPredicate) ->
-        return "glyphicon glyphicon-minus" if predicate != $scope.predicate
-        if $scope.descending then "glyphicon glyphicon-chevron-down" else "glyphicon glyphicon-chevron-up"
+        return @configurationVariableNames.iconSortNone if predicate != $scope.predicate
+        if $scope.descending then @configurationVariableNames.iconSortDescending else @configurationVariableNames.iconSortAscending
 
     @setup.link($scope, $element, $attributes, $filter)
