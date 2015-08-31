@@ -372,10 +372,11 @@
   })(Setup);
 
   Table = (function() {
-    function Table(element, tableConfiguration, configurationVariableNames) {
+    function Table(element, tableConfiguration, configurationVariableNames, config) {
       this.element = element;
       this.tableConfiguration = tableConfiguration;
       this.configurationVariableNames = configurationVariableNames;
+      this.config = config;
     }
 
     Table.prototype.constructHeader = function() {
@@ -440,12 +441,12 @@
       if (!$scope.getSortIcon) {
         $scope.getSortIcon = function(predicate, currentPredicate) {
           if (predicate !== $scope.predicate) {
-            return $scope.$eval(this.configurationVariableNames.iconSortNone);
+            return this.config.iconSortNone;
           }
           if ($scope.descending) {
-            return $scope["eval"](this.configurationVariableNames.iconSortDescending);
+            return this.config.iconSortDescending;
           } else {
-            return $scope.$eval(this.configurationVariableNames.iconSortAscending);
+            return this.config.iconSortAscending;
           }
         };
       }
@@ -528,7 +529,7 @@
           var cvn, table, tc;
           tc = new TableConfiguration(element, attributes);
           cvn = new configurationVariableNames(attributes.atConfig);
-          table = new Table(element, tc, cvn);
+          table = new Table(element, tc, cvn, attributes.atConfig);
           table.compile();
           return {
             post: function($scope, $element, $attributes) {

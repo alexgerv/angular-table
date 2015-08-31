@@ -1,5 +1,5 @@
 class Table
-  constructor: (@element, @tableConfiguration, @configurationVariableNames) ->
+  constructor: (@element, @tableConfiguration, @configurationVariableNames, @config) ->
 
   constructHeader: () ->
     tr = angular.element(document.createElement("tr"))
@@ -42,7 +42,7 @@ class Table
 
     if not $scope.getSortIcon
       $scope.getSortIcon = (predicate, currentPredicate) ->
-        return $scope.$eval(@configurationVariableNames.iconSortNone) if predicate != $scope.predicate
-        if $scope.descending then $scope.eval(@configurationVariableNames.iconSortDescending) else $scope.$eval(@configurationVariableNames.iconSortAscending)
+        return @config.iconSortNone if predicate != $scope.predicate
+        if $scope.descending then @config.iconSortDescending else @config.iconSortAscending
 
     @setup.link($scope, $element, $attributes, $filter)
