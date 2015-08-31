@@ -434,16 +434,18 @@
     };
 
     Table.prototype.post = function($scope, $element, $attributes, $filter) {
+      var w;
       this.setupInitialSorting($scope);
+      w = new ScopeConfigWrapper($scope, this.configurationVariableNames);
       if (!$scope.getSortIcon) {
         $scope.getSortIcon = function(predicate, currentPredicate) {
           if (predicate !== $scope.predicate) {
-            return this.configurationVariableNames.iconSortNone;
+            return $scope.$eval(this.configurationVariableNames.iconSortNone);
           }
           if ($scope.descending) {
-            return this.configurationVariableNames.iconSortDescending;
+            return $scope["eval"](this.configurationVariableNames.iconSortDescending);
           } else {
-            return this.configurationVariableNames.iconSortAscending;
+            return $scope.$eval(this.configurationVariableNames.iconSortAscending);
           }
         };
       }
