@@ -36,13 +36,11 @@ class Table
 
   post: ($scope, $element, $attributes, $filter) ->
     @setupInitialSorting($scope)
-
-    w = new ScopeConfigWrapper($scope, @configurationVariableNames);
-
+    evaluatedConfig = $scope.$eval(@config);
 
     if not $scope.getSortIcon
       $scope.getSortIcon = (predicate, currentPredicate) ->
-        return @config.iconSortNone if predicate != $scope.predicate
-        if $scope.descending then @config.iconSortDescending else @config.iconSortAscending
+        return evaluatedConfig.iconSortNone if predicate != $scope.predicate
+        if $scope.descending then evaluatedConfig.iconSortDescending else evaluatedConfig.iconSortAscending
 
     @setup.link($scope, $element, $attributes, $filter)

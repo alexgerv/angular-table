@@ -6,7 +6,4 @@ class configurationVariableNames
     @maxPages = "#{@configObjectName}.maxPages"
     @currentPage = "#{@configObjectName}.currentPage"
     @orderBy = "#{@configObjectName}.orderBy"
-    @iconSortAscending = "#{@configObjectName}.iconSortAscending"
-    @iconSortDescending = "#{@configObjectName}.iconSortDescending"
-    @iconSortNone = "#{@configObjectName}.iconSortNone"
 

@@ -81,9 +81,6 @@
       this.maxPages = "" + this.configObjectName + ".maxPages";
       this.currentPage = "" + this.configObjectName + ".currentPage";
       this.orderBy = "" + this.configObjectName + ".orderBy";
-      this.iconSortAscending = "" + this.configObjectName + ".iconSortAscending";
-      this.iconSortDescending = "" + this.configObjectName + ".iconSortDescending";
-      this.iconSortNone = "" + this.configObjectName + ".iconSortNone";
     }
 
     return configurationVariableNames;
@@ -435,18 +432,18 @@
     };
 
     Table.prototype.post = function($scope, $element, $attributes, $filter) {
-      var w;
+      var evaluatedConfig;
       this.setupInitialSorting($scope);
-      w = new ScopeConfigWrapper($scope, this.configurationVariableNames);
+      evaluatedConfig = $scope.$eval(this.config);
       if (!$scope.getSortIcon) {
         $scope.getSortIcon = function(predicate, currentPredicate) {
           if (predicate !== $scope.predicate) {
-            return this.config.iconSortNone;
+            return evaluatedConfig.iconSortNone;
           }
           if ($scope.descending) {
-            return this.config.iconSortDescending;
+            return evaluatedConfig.iconSortDescending;
           } else {
-            return this.config.iconSortAscending;
+            return evaluatedConfig.iconSortAscending;
           }
         };
       }
